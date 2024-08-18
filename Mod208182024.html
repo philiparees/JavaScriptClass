@@ -1,0 +1,32 @@
+<html>
+<head><title>PhilipReesMOD208182024</title></head>
+<body>
+<script>
+// Ask the user for their first name and store it in the variable Fname
+let Fname = prompt("Please enter your first name:");
+
+// Display a welcome message containing the user's name
+console.log(`Welcome, ${Fname}!`);
+
+// Create the constant piValue to store the value of Pi (approximately 3.1415926)
+const piValue = 3.1415926;
+
+// Ask the user to input their favorite number and store it in a variable myFavNum
+let myFavNum = parseFloat(prompt("Enter your favorite number:"));
+
+// Calculate the area of a circle using the user's favorite number as the radius
+let myArea = piValue * myFavNum ** 2;
+
+// Display the calculated area
+console.log(`The area of a circle with radius ${myFavNum} is approximately ${myArea.toFixed(2)}.`);
+
+// Display the contents of each variable
+document.write(`<p>Your first name: ${Fname}</p>`);
+document.write(`<p>Value of Pi (π): ${piValue}</p>`);
+document.write(`<p>Your favorite number: ${myFavNum}</p>`);
+document.write(`<p>Calculated area: ${myArea.toFixed(2)}</p>`);
+document.write(`<p>Hi ${Fname}!  As a result of the input I have calculated what you have provided. The area of a circle with a radius of ${myFavNum} is approximately ${myArea.toFixed(2)}.</p>`);
+</script>
+
+</body>
+</html>
