@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+</head>
+<body>
+    <h1>Tip Calculator</h1>
+    <div>
+        <label for="serviceAmount">Enter the dollar amount of the service:</label>
+        <input type="number" id="serviceAmount" step="0.01" min="5" max="500">
+    </div>
+    <div>
+        <label for="serviceQuality">Was the service Great, Ok, or Poor?</label>
+        <input type="text" id="serviceQuality">
+    </div>
+    <button onclick="main()">Calculate Tip</button>
+    <p id="result"></p>
+
+    <script>
+        // Function to verify service quality
+        function verifyServiceQuality(serviceQuality) {
+            const validQualities = ['great', 'ok', 'poor'];
+            if (!validQualities.includes(serviceQuality.toLowerCase())) {
+                document.getElementById('result').innerText = "Invalid service quality entered. Please enter 'Great', 'Ok', or 'Poor'.";
+                return false;
+            }
+            return true;
+        }
+
+        // Function to verify service amount
+        function verifyServiceAmount(serviceAmount) {
+            if (serviceAmount < 5.00 || serviceAmount > 500.00) {
+                document.getElementById('result').innerText = "Invalid service amount entered. Please enter an amount between $5.00 and $500.00.";
+                return false;
+            }
+            return true;
+        }
+
+        // Function to calculate tip
+        function calculateTip(serviceAmount, serviceQuality) {
+            let tipPercentage;
+            switch (serviceQuality.toLowerCase()) {
+                case 'great':
+                    tipPercentage = 0.20;
+                    break;
+                case 'ok':
+                    tipPercentage = 0.15;
+                    break;
+                case 'poor':
+                    tipPercentage = 0.10;
+                    break;
+            }
+            return serviceAmount * tipPercentage;
+        }
+
+        // Main function to prompt user and calculate tip
+        function main() {
+            const serviceAmount = parseFloat(document.getElementById('serviceAmount').value);
+            if (!verifyServiceAmount(serviceAmount)) return;
+
+            const serviceQuality = document.getElementById('serviceQuality').value;
+            if (!verifyServiceQuality(serviceQuality)) return;
+
+            const tipAmount = calculateTip(serviceAmount, serviceQuality);
+            document.getElementById('result').innerText = `For a service amount of $${serviceAmount.toFixed(2)}, the recommended tip is $${tipAmount.toFixed(2)} based on ${serviceQuality} service.`;
+        }
+    </script>
+</body>
+</html>
